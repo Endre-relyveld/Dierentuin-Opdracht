@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DierenTuin.Models
+namespace DierenTuin_opdracht.Models
 {
     public class Animal
     {

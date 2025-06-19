@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DierenTuin-opdracht.props" />
+</Project>

@@ -19,6 +19,43 @@ namespace DierenTuin_opdracht.Controllers
             _context = context;
         }
 
+        // Sunrise: geeft aan of het dier wakker wordt of gaat slapen
+        public IActionResult Sunrise(int id)
+        {
+            var animal = _context.Animals.Include(a => a.Enclosure).FirstOrDefault(a => a.Id == id);
+            if (animal == null) return NotFound();
+
+            var status = animal.ActivityPattern switch
+            {
+                ActivityPattern.Diurnal => "wakker",
+                ActivityPattern.Nocturnal => "slaap",
+                ActivityPattern.Cathemeral => "actief",
+                _ => "onbekend"
+            };
+
+            return Ok($"{animal.Name} is nu {status}.");
+        }
+
+        // FeedingTime: wat eet het dier
+        public IActionResult FeedingTime(int id)
+        {
+            var animal = _context.Animals
+                .Include(a => a.Prey)
+                .FirstOrDefault(a => a.Id == id);
+
+            if (animal == null) return NotFound();
+
+            if (animal.Prey != null && animal.Prey.Any())
+            {
+                var preyNames = string.Join(", ", animal.Prey.Select(p => p.Name));
+                return Ok($"{animal.Name} eet: {preyNames}.");
+            }
+
+            return Ok($"{animal.Name} eet: {animal.DietaryClass} dieet.");
+        }
+
+
+
         // GET: Animals
         public async Task<IActionResult> Index()
         {

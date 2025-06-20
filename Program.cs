@@ -44,29 +44,46 @@ namespace DierenTuin_opdracht
 
 
 
+            //using (var scope = app.Services.CreateScope())
+            //{
+            //    var context = scope.ServiceProvider.GetRequiredService<ZooContext>();
+            //    context.Database.EnsureCreated(); // Zorg dat database bestaat
+
+            //    // Voeg testdata toe als de database leeg is
+            //    if (!context.Animals.Any())
+            //    {
+            //        // Voorbeeld: voeg 1 testcategorie en dier toe
+            //        var category = new Category { Name = "Zoogdieren" };
+            //        context.Categories.Add(category);
+
+            //        var animal = new Animal
+            //        {
+            //            Name = "Leo",
+            //            Species = "Leeuw",
+            //            Size = Size.Large,
+            //            DietaryClass = DietaryClass.Carnivore,
+            //            Category = category
+            //        };
+            //        context.Animals.Add(animal);
+
+            //        context.SaveChanges();
+            //    }
+            //}
+
+            // In Program.cs
             using (var scope = app.Services.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<ZooContext>();
-                context.Database.EnsureCreated(); // Zorg dat database bestaat
-
-                // Voeg testdata toe als de database leeg is
-                if (!context.Animals.Any())
+                var services = scope.ServiceProvider;
+                try
                 {
-                    // Voorbeeld: voeg 1 testcategorie en dier toe
-                    var category = new Category { Name = "Zoogdieren" };
-                    context.Categories.Add(category);
-
-                    var animal = new Animal
-                    {
-                        Name = "Leo",
-                        Species = "Leeuw",
-                        Size = Size.Large,
-                        DietaryClass = DietaryClass.Carnivore,
-                        Category = category
-                    };
-                    context.Animals.Add(animal);
-
-                    context.SaveChanges();
+                    var context = services.GetRequiredService<ZooContext>();
+                    DataSeeder.Initialize(context);
+                    Console.WriteLine("Database seeding voltooid!");
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "Fout tijdens database seeding");
                 }
             }
 

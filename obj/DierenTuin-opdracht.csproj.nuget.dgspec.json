@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "W:\\school\\vakken\\jaar 2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj": {}
+    "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj": {}
   },
   "projects": {
-    "W:\\school\\vakken\\jaar 2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj": {
+    "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "W:\\school\\vakken\\jaar 2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj",
+        "projectUniqueName": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj",
         "projectName": "DierenTuin-opdracht",
-        "projectPath": "W:\\school\\vakken\\jaar 2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj",
+        "projectPath": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht.csproj",
         "packagesPath": "C:\\Users\\Endre\\.nuget\\packages\\",
-        "outputPath": "W:\\school\\vakken\\jaar 2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\obj\\",
+        "outputPath": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Endre\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Bogus": {
+              "target": "Package",
+              "version": "[35.6.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.6, )"

@@ -23,7 +23,11 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Bewerken</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a> |
+                    <a asp-action="Sunrise" asp-route-id="@item.Id">Sunrise</a> |
+                    <a asp-action="Sunset" asp-route-id="@item.Id">Sunset</a> |
+                    <a asp-action="FeedingTime" asp-route-id="@item.Id">Voeren</a> |
+                    <a asp-action="CheckConstraints" asp-route-id="@item.Id">Controleer eisen</a>
                 </td>
             </tr>
         }

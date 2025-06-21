@@ -149,6 +149,152 @@ namespace DierenTuin_opdracht.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Sunrise: Behandel zonsopgang voor de hele dierentuin
+        public IActionResult Sunrise()
+        {
+            var animals = _context.Animals
+                .Include(a => a.Enclosure)
+                .ToList();
+
+            var results = new List<string>();
+            foreach (var animal in animals)
+            {
+                var status = animal.ActivityPattern switch
+                {
+                    ActivityPattern.Diurnal => "wakker",
+                    ActivityPattern.Nocturnal => "slaap",
+                    ActivityPattern.Cathemeral => "actief",
+                    _ => "onbekend"
+                };
+                results.Add($"{animal.Name} in {animal.Enclosure?.Name ?? "geen verblijf"} is nu {status}");
+            }
+
+            return Ok(results);
+        }
+
+        // Sunset: Behandel zonsondergang voor de hele dierentuin
+        public IActionResult Sunset()
+        {
+            var animals = _context.Animals
+                .Include(a => a.Enclosure)
+                .ToList();
+
+            var results = new List<string>();
+            foreach (var animal in animals)
+            {
+                var status = animal.ActivityPattern switch
+                {
+                    ActivityPattern.Diurnal => "slaap",
+                    ActivityPattern.Nocturnal => "wakker",
+                    ActivityPattern.Cathemeral => "actief",
+                    _ => "onbekend"
+                };
+                results.Add($"{animal.Name} in {animal.Enclosure?.Name ?? "geen verblijf"} is nu {status}");
+            }
+
+            return Ok(results);
+        }
+
+        // FeedingTime: Behandel voedertijd voor de hele dierentuin
+        public IActionResult FeedingTime()
+        {
+            var animals = _context.Animals
+                .Include(a => a.Enclosure)
+                .Include(a => a.Prey)
+                .Include(a => a.Category)
+                .ToList();
+
+            var results = new List<string>();
+            foreach (var animal in animals)
+            {
+                var foodInfo = animal.Prey != null && animal.Prey.Any()
+                    ? $"eet: {string.Join(", ", animal.Prey.Select(p => p.Name))}"
+                    : $"eet: {animal.DietaryClass} dieet";
+
+                results.Add($"{animal.Name} in {animal.Enclosure?.Name ?? "geen verblijf"} {foodInfo}");
+            }
+
+            return Ok(results);
+        }
+
+        // CheckConstraints: Controleer alle beperkingen in de dierentuin
+        public IActionResult CheckConstraints()
+        {
+            var issues = new List<string>();
+            var enclosures = _context.Enclosures
+                .Include(e => e.Animals)
+                .ToList();
+
+            foreach (var enclosure in enclosures)
+            {
+                foreach (var animal in enclosure.Animals)
+                {
+                    if (enclosure.Size < animal.SpaceRequirement)
+                    {
+                        issues.Add($"{animal.Name} heeft meer ruimte nodig in {enclosure.Name} ({animal.SpaceRequirement}m² nodig, {enclosure.Size}m² beschikbaar)");
+                    }
+
+                    if (enclosure.SecurityLevel < animal.SecurityRequirement)
+                    {
+                        issues.Add($"{animal.Name} heeft hogere beveiliging nodig in {enclosure.Name} (niveau {animal.SecurityRequirement} nodig, niveau {enclosure.SecurityLevel} beschikbaar)");
+                    }
+                }
+            }
+
+            return issues.Any()
+                ? BadRequest(issues)
+                : Ok("Alle dieren voldoen aan de verblijfseisen");
+        }
+
+        // AutoAssign: Automatisch dieren toewijzen aan verblijven
+        public IActionResult AutoAssign(bool removeAll = false)
+        {
+            try
+            {
+                if (removeAll)
+                {
+                    // Reset alle dieren naar geen verblijf
+                    var allAnimals = _context.Animals.Where(a => a.EnclosureId != null);
+                    foreach (var animal in allAnimals)
+                    {
+                        animal.EnclosureId = null;
+                    }
+                }
+
+                // Eenvoudige toewijzingslogica (pas dit aan naar je behoeften)
+                var unassignedAnimals = _context.Animals
+                    .Where(a => a.EnclosureId == null)
+                    .ToList();
+
+                var availableEnclosures = _context.Enclosures
+                    .Include(e => e.Animals)
+                    .ToList();
+
+                foreach (var animal in unassignedAnimals)
+                {
+                    var suitableEnclosure = availableEnclosures
+                        .FirstOrDefault(e => e.Size >= animal.SpaceRequirement &&
+                                           e.SecurityLevel >= animal.SecurityRequirement);
+
+                    if (suitableEnclosure != null)
+                    {
+                        animal.EnclosureId = suitableEnclosure.Id;
+                        suitableEnclosure.Size -= animal.SpaceRequirement; // Update resterende ruimte
+                    }
+                }
+
+                _context.SaveChanges();
+
+                return Ok(removeAll
+                    ? "Alle dieren zijn uit verblijven verwijderd en opnieuw toegewezen"
+                    : "Niet-toegewezen dieren zijn toegewezen aan geschikte verblijven");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Fout bij toewijzen: {ex.Message}");
+            }
+        }
+
         private bool ZooExists(int id)
         {
             return _context.Zoos.Any(e => e.Id == id);

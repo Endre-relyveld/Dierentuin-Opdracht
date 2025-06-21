@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DierenTuin-opdracht")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed6dc01a24b6a817126d57106f44d4254e488db3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2eb78c0de4fecbc0d220087458573f346412f78c")]
 [assembly: System.Reflection.AssemblyProductAttribute("DierenTuin-opdracht")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DierenTuin-opdracht")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

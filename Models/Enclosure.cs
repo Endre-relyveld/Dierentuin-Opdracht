@@ -12,6 +12,10 @@ namespace DierenTuin_opdracht.Models
         public Climate Climate { get; set; }
         public HabitatType HabitatType { get; set; }
 
+        public string DietaryRestrictions { get; set; } 
+
+
+
         public SecurityLevel SecurityLevel { get; set; }
         public double Size { get; set; }
     }

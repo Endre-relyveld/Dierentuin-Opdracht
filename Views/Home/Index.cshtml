@@ -1,8 +1,148 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "DierenTuin - Welkom";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="zoo-container">
+    <div class="zoo-header">
+        <img src="https://github.com/Endre-relyveld/Dierentuin-Opdracht/blob/c449913547f01fcd01cb1d91771e5764d5f74638/pqVvxL.jpg?raw=true" alt="DierenTuin Entrance" class="zoo-banner">
+        <h1 class="display-4 zoo-title">Welkom bij DierenTuin</h1>
+        <p class="zoo-subtitle">Ontdek onze prachtige dierenverblijven en bewonder de natuur</p>
+    </div>
+
+    <div class="zoo-features">
+        <div class="row">
+            <div class="col-md-4 feature-card">
+                <div class="card animal-card">
+                    <img src="https://github.com/Endre-relyveld/Dierentuin-Opdracht/blob/c449913547f01fcd01cb1d91771e5764d5f74638/tiger.jpg?raw=true" class="card-img-top" alt="Lion">
+                    <div class="card-body">
+                        <h5 class="card-title">Dierenbeheer</h5>
+                        <p class="card-text">Beheer onze uitgebreide collectie van exotische dieren en hun verblijven.</p>
+                        <a href="/Animals" class="btn btn-primary zoo-btn">Naar Dieren</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 feature-card">
+                <div class="card animal-card">
+                    <img src="https://github.com/Endre-relyveld/Dierentuin-Opdracht/blob/main/elephant.jpg?raw=true" class="card-img-top" alt="Elephant">
+                    <div class="card-body">
+                        <h5 class="card-title">Verblijven</h5>
+                        <p class="card-text">Ontdek onze natuurlijke habitats voor alle diersoorten.</p>
+                        <a href="/Enclosures" class="btn btn-primary zoo-btn">Naar Verblijven</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 feature-card">
+                <div class="card animal-card">
+                    <img src="https://github.com/Endre-relyveld/Dierentuin-Opdracht/blob/main/giraffe.jpg?raw=true" class="card-img-top" alt="Animal Categories">
+                    <div class="card-body">
+                        <h5 class="card-title">Diercategorieën</h5>
+                        <p class="card-text">Bekijk onze dieren per categorie: zoogdieren, vogels, reptielen en meer.</p>
+                        <a href="/Categories" class="btn btn-primary zoo-btn">Naar Categorieën</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zoo-news mt-5">
+        <h2><i class="fas fa-newspaper"></i> DierenTuin Nieuws</h2>
+        <div class="news-item">
+            <h4>Nieuwe leeuwenwelpjes geboren!</h4>
+            <p>Kom onze schattige nieuwe aanwinsten bewonderen in het Afrikaans plateau.</p>
+        </div>
+        <div class="news-item">
+            <h4>Speciale voedertijden deze zomer</h4>
+            <p>Elke dag om 11:00 en 15:00 kun je onze dieren zien eten.</p>
+        </div>
+    </div>
 </div>
+
+<style>
+    .zoo-container {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .zoo-header {
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .zoo-banner {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .zoo-title {
+        color: #2c6e3c;
+        font-weight: 700;
+        margin-top: 20px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .zoo-subtitle {
+        color: #4a8c5a;
+        font-size: 1.2rem;
+    }
+
+    .animal-card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        height: 100%;
+    }
+
+    .animal-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .zoo-btn {
+        background-color: #2c6e3c;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 20px;
+    }
+
+    .zoo-btn:hover {
+        background-color: #1d4d29;
+    }
+
+    .zoo-news {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .zoo-news h2 {
+        color: #2c6e3c;
+        border-bottom: 2px solid #4a8c5a;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .news-item {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px dashed #ddd;
+    }
+
+    .news-item:last-child {
+        border-bottom: none;
+    }
+</style>

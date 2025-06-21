@@ -19,6 +19,75 @@ namespace DierenTuin_opdracht.Controllers
             _context = context;
         }
 
+        // Sunset: vergelijkbaar met Sunrise maar omgekeerde logica
+        public IActionResult Sunset(int id)
+        {
+            var animal = _context.Animals.Include(a => a.Enclosure).FirstOrDefault(a => a.Id == id);
+            if (animal == null) return NotFound();
+
+            var status = animal.ActivityPattern switch
+            {
+                ActivityPattern.Diurnal => "slaap",
+                ActivityPattern.Nocturnal => "wakker",
+                ActivityPattern.Cathemeral => "actief",
+                _ => "onbekend"
+            };
+
+            return Ok($"{animal.Name} is nu {status}.");
+        }
+
+        // CheckConstraints: controleer of het dier in het juiste verblijf zit
+        public IActionResult CheckConstraints(int id)
+        {
+            var animal = _context.Animals
+                .Include(a => a.Enclosure)
+                .FirstOrDefault(a => a.Id == id);
+
+            if (animal == null) return NotFound();
+
+            var issues = new List<string>();
+
+            // Controleer ruimtevereiste
+            if (animal.Enclosure?.Size < animal.SpaceRequirement)
+            {
+                issues.Add($"Verblijf is te klein (heeft {animal.Enclosure.Size}m², nodig {animal.SpaceRequirement}m²)");
+            }
+
+            // Controleer veiligheidseisen
+            if (animal.SecurityRequirement > (animal.Enclosure?.SecurityLevel ?? 0))
+            {
+                issues.Add($"Verblijf heeft onvoldoende beveiliging (niveau {animal.Enclosure?.SecurityLevel}, nodig niveau {animal.SecurityRequirement})");
+            }
+
+            // Controleer dieetcompatibiliteit met verblijf
+            if (animal.Enclosure != null && animal.Enclosure.DietaryRestrictions != null)
+            {
+                if (animal.Enclosure.DietaryRestrictions.Contains(animal.DietaryClass.ToString()))
+                {
+                    issues.Add($"Dieet ({animal.DietaryClass}) is niet toegestaan in dit verblijf");
+                }
+            }
+
+            if (issues.Any())
+            {
+                return BadRequest(new
+                {
+                    Animal = animal.Name,
+                    Issues = issues
+                });
+            }
+
+            return Ok(new
+            {
+                Animal = animal.Name,
+                Message = "Voldoet aan alle eisen"
+            });
+        }
+
+        
+        
+
+
         // Sunrise: geeft aan of het dier wakker wordt of gaat slapen
         public IActionResult Sunrise(int id)
         {

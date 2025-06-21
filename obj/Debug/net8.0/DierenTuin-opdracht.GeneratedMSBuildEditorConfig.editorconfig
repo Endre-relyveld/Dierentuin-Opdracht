@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = W:\school\vakken\jaar-2\C-Sharp\DierenTuin-opdracht\DierenTuin-opdracht
 build_property._RazorSourceGeneratorDebug = 
 
+[W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Animals/CheckConstraints.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xDaGVja0NvbnN0cmFpbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Animals/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,8 +46,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Animals/FeedingTime.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xGZWVkaW5nVGltZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Animals/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Animals/Sunrise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xTdW5yaXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Animals/Sunset.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xTdW5zZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Categories/Create.cshtml]
@@ -66,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Enclosures/CheckConstraints.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlc1xDaGVja0NvbnN0cmFpbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Enclosures/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -80,6 +100,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Enclosures/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Enclosures/FeedingTime.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlc1xGZWVkaW5nVGltZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Enclosures/Index.cshtml]
@@ -100,6 +124,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Zoos/AutoAssign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vc1xBdXRvQXNzaWduLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [W:/school/vakken/jaar-2/C-Sharp/DierenTuin-opdracht/DierenTuin-opdracht/Views/Zoos/Create.cshtml]

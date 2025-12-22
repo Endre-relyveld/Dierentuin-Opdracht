@@ -10,29 +10,30 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark custom-navbar mb-3">
+
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DierenTuin_opdracht</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link Green-text" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Animals" asp-action="Index">Dieren</a>
+                            <a class="nav-link Green-text" asp-area="" asp-controller="Animals" asp-action="Index">Dieren</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categorieën</a>
+                            <a class="nav-link Green-text" asp-area="" asp-controller="Categories" asp-action="Index">Categorieën</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Enclosures" asp-action="Index">Verblijven</a>
+                            <a class="nav-link Green-text" asp-area="" asp-controller="Enclosures" asp-action="Index">Verblijven</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Zoos" asp-action="Index">Dierentuin</a>
+                            <a class="nav-link Green-text" asp-area="" asp-controller="Zoos" asp-action="Index">Dierentuin</a>
                         </li>
                         
                     </ul>
@@ -57,4 +58,82 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+<style>
+
+
+    /* ===== NAVBAR STYLING ===== */
+    .custom-navbar {
+        background-color: #1f2937; /* donkergrijs */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+        .custom-navbar .navbar-brand {
+            font-weight: 600;
+            color: #f9fafb;
+        }
+
+        .custom-navbar .nav-link {
+            color: #d1d5db;
+            margin-right: 0.5rem;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+            .custom-navbar .nav-link:hover {
+                color: #ffffff;
+                background-color: rgba(255,255,255,0.08);
+                border-radius: 4px;
+            }
+
+            .custom-navbar .nav-link.active {
+                color: #ffffff;
+                font-weight: 500;
+            }
+
+    .Green-text {
+        color: rgb(255 255 255 / 85%);
+    }
+
+    /* Navbar exact horizontaal & verticaal gecentreerd */
+    header {
+        display: flex;
+        justify-content: center;
+    }
+
+        header .navbar {
+            width: 100%;
+        }
+
+    .navbar .container-fluid {
+        display: flex;
+        justify-content: center;
+    }
+
+  
+    .navbar-nav {
+        align-items: center;
+    }
+    /* Haal navbar-brand uit de layout flow */
+    .navbar-brand {
+        position: absolute;
+        left: 1rem; /* blijft links zichtbaar */
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap;
+    }
+
+    /* Zorg dat nav-items echt exact gecentreerd zijn */
+    .navbar .navbar-collapse {
+        justify-content: center !important;
+    }
+
+    /* Voorkomt dat absolute position issues geeft */
+    .navbar {
+        position: relative;
+    }
+
+
+</style>
+
 </html>
+

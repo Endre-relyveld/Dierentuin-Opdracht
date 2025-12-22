@@ -20,3 +20,190 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+
+
+/* =========================
+   DIERENTUIN GLOBAL STYLE
+   (past op h1 + filterforms + tables)
+   ========================= */
+
+:root {
+    --zoo-bg: #f7faf7;
+    --zoo-surface: #ffffff;
+    --zoo-text: #0f172a;
+    --zoo-muted: #64748b;
+    --zoo-primary: #2f6f4e; /* groen */
+    --zoo-primary-2: #24583d; /* donker groen */
+    --zoo-accent: #b45309; /* warm bruin/oranje */
+    --zoo-border: #e5e7eb;
+    --zoo-radius: 12px;
+    --zoo-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* Page */
+body {
+    background: var(--zoo-bg);
+    color: var(--zoo-text);
+}
+
+.container main {
+    padding-top: 0.5rem;
+}
+
+/* Headings */
+h1 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0.75rem 0 1rem;
+}
+
+/* Filter block (form) */
+form.mb-3 {
+    background: var(--zoo-surface);
+    border: 1px solid var(--zoo-border);
+    border-radius: var(--zoo-radius);
+    box-shadow: var(--zoo-shadow);
+    padding: 1rem;
+}
+
+.form-label {
+    font-weight: 700;
+    color: var(--zoo-text);
+    margin-bottom: 0.35rem;
+}
+
+.form-select,
+.form-control {
+    border-radius: 10px;
+    border: 1px solid var(--zoo-border);
+    box-shadow: none !important;
+}
+
+    .form-select:focus,
+    .form-control:focus {
+        border-color: rgba(47, 111, 78, 0.6);
+        box-shadow: 0 0 0 0.2rem rgba(47, 111, 78, 0.18) !important;
+    }
+
+/* Buttons */
+.btn {
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: var(--zoo-primary);
+    border-color: var(--zoo-primary);
+}
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background-color: var(--zoo-primary-2);
+        border-color: var(--zoo-primary-2);
+    }
+
+.btn-outline-secondary {
+    border-color: var(--zoo-border);
+    color: var(--zoo-muted);
+}
+
+    .btn-outline-secondary:hover {
+        background: rgba(100, 116, 139, 0.08);
+        color: var(--zoo-text);
+        border-color: var(--zoo-border);
+    }
+
+/* Table card look */
+.table {
+    background: var(--zoo-surface);
+    border: 1px solid var(--zoo-border);
+    border-radius: var(--zoo-radius);
+    overflow: hidden; /* rounded corners */
+    box-shadow: var(--zoo-shadow);
+    margin-top: 0.75rem;
+}
+
+    .table thead th {
+        background: rgba(47, 111, 78, 0.08);
+        color: var(--zoo-text);
+        font-weight: 800;
+        border-bottom: 1px solid var(--zoo-border) !important;
+    }
+
+    .table tbody td {
+        border-top: 1px solid var(--zoo-border);
+        vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+        background: rgba(47, 111, 78, 0.05);
+    }
+
+    /* Action links (Bewerken | Details | etc.) */
+    .table td a {
+        color: var(--zoo-primary);
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+        .table td a:hover {
+            color: var(--zoo-primary-2);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+/* Footer a bit cleaner */
+footer.footer {
+    background: transparent;
+}
+
+/* Optional: nicer separators when you have " | " between links */
+.table td {
+    line-height: 1.55;
+}
+
+
+/* =========================
+   ZOO DASHBOARD
+   ========================= */
+
+.zoo-dashboard {
+    background: var(--zoo-surface);
+    border: 1px solid var(--zoo-border);
+    border-radius: var(--zoo-radius);
+    box-shadow: var(--zoo-shadow);
+    padding: 1.25rem;
+    max-width: 520px;
+}
+
+.zoo-dashboard__title {
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.zoo-dashboard__actions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.zoo-dashboard__action {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--zoo-primary);
+    text-decoration: none;
+    background: rgba(47, 111, 78, 0.06);
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+    .zoo-dashboard__action:hover {
+        background: rgba(47, 111, 78, 0.14);
+        transform: translateX(4px);
+        color: var(--zoo-primary-2);
+    }

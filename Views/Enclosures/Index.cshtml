@@ -6,9 +6,7 @@
 
 <h1>Verblijven</h1>
 
-<p>
-    <a asp-action="Create">Nieuw verblijf toevoegen</a>
-</p>
+
 
 <table class="table">
     <thead>
@@ -34,12 +32,15 @@
                     <a asp-action="Edit" asp-route-id="@item.Id">Bewerken</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a> |
-                    <a asp-action="Sunrise" asp-route-id="@item.Id">Sunrise</a> |
-                    <a asp-action="Sunset" asp-route-id="@item.Id">Sunset</a> |
-                    <a asp-action="FeedingTime" asp-route-id="@item.Id">Feeding</a> |
-                    <a asp-action="CheckConstraints" asp-route-id="@item.Id">Check</a>
+                    <a asp-action="Sunrise" asp-route-id="@item.Id">Zonsopgang</a> |
+                    <a asp-action="Sunset" asp-route-id="@item.Id">Zonsondergang</a> |
+                    <a asp-action="FeedingTime" asp-route-id="@item.Id">Voeren</a> |
+                    <a asp-action="CheckConstraints" asp-route-id="@item.Id">Controleer eisen</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Nieuw verblijf toevoegen</a>
+</p>

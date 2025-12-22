@@ -1,83 +1,93 @@
 ﻿@model DierenTuin_opdracht.Models.Animal
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Aanmaken";
 }
 
-<h1>Create</h1>
+<h1>Aanmaken</h1>
 
-<h4>Animal</h4>
+<h4>Dier</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Naam</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Species" class="control-label"></label>
+                <label asp-for="Species" class="control-label">Soort</label>
                 <input asp-for="Species" class="form-control" />
                 <span asp-validation-for="Species" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
+                <label asp-for="CategoryId" class="control-label">Categorie</label>
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
-                    <option value="">-- Select Category --</option>
+                    <option value="">-- Selecteer categorie --</option>
                 </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Size" class="control-label"></label>
+                <label asp-for="Size" class="control-label">Grootte</label>
                 <select asp-for="Size" class="form-control" asp-items="Html.GetEnumSelectList<DierenTuin_opdracht.Models.Size>()">
-                    <option value="">-- Select Size --</option>
+                    <option value="">-- Selecteer grootte --</option>
                 </select>
                 <span asp-validation-for="Size" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="DietaryClass" class="control-label"></label>
+                <label asp-for="DietaryClass" class="control-label">Voedingsklasse</label>
                 <select asp-for="DietaryClass" class="form-control" asp-items="Html.GetEnumSelectList<DierenTuin_opdracht.Models.DietaryClass>()">
-                    <option value="">-- Select Dietary Class --</option>
+                    <option value="">-- Selecteer voedingsklasse --</option>
                 </select>
                 <span asp-validation-for="DietaryClass" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="ActivityPattern" class="control-label"></label>
+                <label asp-for="ActivityPattern" class="control-label">Activiteitspatroon</label>
                 <select asp-for="ActivityPattern" class="form-control" asp-items="Html.GetEnumSelectList<DierenTuin_opdracht.Models.ActivityPattern>()">
-                    <option value="">-- Select Activity Pattern --</option>
+                    <option value="">-- Selecteer activiteitspatroon --</option>
                 </select>
                 <span asp-validation-for="ActivityPattern" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="EnclosureId" class="control-label"></label>
+                <label asp-for="EnclosureId" class="control-label">Verblijf</label>
                 <select asp-for="EnclosureId" class="form-control" asp-items="ViewBag.EnclosureId">
-                    <option value="">-- Select Enclosure --</option>
+                    <option value="">-- Selecteer verblijf --</option>
                 </select>
                 <span asp-validation-for="EnclosureId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="SpaceRequirement" class="control-label"></label>
+                <label asp-for="SpaceRequirement" class="control-label">Ruimtebehoefte (m²)</label>
                 <input asp-for="SpaceRequirement" class="form-control" />
                 <span asp-validation-for="SpaceRequirement" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="SecurityRequirement" class="control-label"></label>
+                <label asp-for="SecurityRequirement" class="control-label">Beveiligingsniveau</label>
                 <select asp-for="SecurityRequirement" class="form-control" asp-items="Html.GetEnumSelectList<DierenTuin_opdracht.Models.SecurityLevel>()">
-                    <option value="">-- Select Security Level --</option>
+                    <option value="">-- Selecteer beveiligingsniveau --</option>
                 </select>
                 <span asp-validation-for="SecurityRequirement" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Aanmaken" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Terug naar overzicht</a>
 </div>
 
 @section Scripts {

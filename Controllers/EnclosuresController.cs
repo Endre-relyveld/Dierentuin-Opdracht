@@ -46,22 +46,10 @@ namespace DierenTuin_opdracht.Controllers
         // GET: Enclosures/Create
         public IActionResult Create()
         {
-            ViewBag.ClimateOptions = new SelectList(new List<string>
-            {
-                "Tropical",
-                "Temperate",
-                "Arctic",
-                "Desert",
-                "Aquatic"
-            });
-
-                    ViewBag.SecurityLevelOptions = new SelectList(new List<int>
-            {
-                1, 2, 3, 4, 5
-            });
-
+            PopulateDropdowns();
             return View();
         }
+
 
         // POST: Enclosures/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -76,73 +64,44 @@ namespace DierenTuin_opdracht.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            PopulateDropdowns(enclosure); // <-- BELANGRIJK
             return View(enclosure);
         }
+
 
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var enclosure = await _context.Enclosures.FindAsync(id);
-            if (enclosure == null)
-            {
-                return NotFound();
-            }
+            if (enclosure == null) return NotFound();
 
-            ViewBag.ClimateOptions = new SelectList(new List<string>
-            {
-                "Tropical",
-                "Temperate",
-                "Arctic",
-                "Desert",
-                "Aquatic"
-            }, selectedValue: enclosure.Climate);
-
-                    ViewBag.SecurityLevelOptions = new SelectList(new List<int>
-            {
-                1, 2, 3, 4, 5
-            }, selectedValue: enclosure.SecurityLevel);
-
+            PopulateDropdowns(enclosure);
             return View(enclosure);
         }
 
+
         // POST: Enclosures/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Climate,HabitatType,SecurityLevel,Size")] Enclosure enclosure)
         {
-            if (id != enclosure.Id)
-            {
-                return NotFound();
-            }
+            if (id != enclosure.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(enclosure);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EnclosureExists(enclosure.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(enclosure);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            PopulateDropdowns(enclosure); // <-- BELANGRIJK
             return View(enclosure);
         }
+
 
         // GET: Enclosures/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -258,7 +217,23 @@ namespace DierenTuin_opdracht.Controllers
 
 
 
-        
+        private void PopulateDropdowns(Enclosure? enclosure = null)
+        {
+            ViewBag.ClimateOptions = new SelectList(
+                Enum.GetValues(typeof(Climate)).Cast<Climate>()
+                    .Select(c => new { Value = c, Text = c.ToString() }),
+                "Value", "Text",
+                enclosure?.Climate
+            );
+
+            ViewBag.SecurityLevelOptions = new SelectList(
+                Enum.GetValues(typeof(SecurityLevel)).Cast<SecurityLevel>()
+                    .Select(s => new { Value = s, Text = s.ToString() }),
+                "Value", "Text",
+                enclosure?.SecurityLevel
+            );
+        }
+
 
 
 

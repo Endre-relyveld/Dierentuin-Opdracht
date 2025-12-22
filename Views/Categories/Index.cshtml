@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<DierenTuin_opdracht.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categorieën";
 }
 
-<h1>Index</h1>
+<h1>Categorieën</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -19,17 +18,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Bewerken</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details bekijken</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Nieuwe categorie aanmaken</a>
+</p>

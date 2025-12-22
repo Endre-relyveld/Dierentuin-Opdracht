@@ -126,11 +126,45 @@ namespace DierenTuin_opdracht.Controllers
 
 
         // GET: Animals
-        public async Task<IActionResult> Index()
+        // GET: Animals
+        public async Task<IActionResult> Index(
+            int? categoryId,
+            Size? size,
+            DietaryClass? dietaryClass,
+            ActivityPattern? activityPattern,
+            SecurityLevel? securityRequirement
+        )
         {
-            var zooContext = _context.Animals.Include(a => a.Category).Include(a => a.Enclosure);
-            return View(await zooContext.ToListAsync());
+            var query = _context.Animals
+                .Include(a => a.Category)
+                .Include(a => a.Enclosure)
+                .AsQueryable();
+
+            if (categoryId.HasValue)
+                query = query.Where(a => a.CategoryId == categoryId.Value);
+
+            if (size.HasValue)
+                query = query.Where(a => a.Size == size.Value);
+
+            if (dietaryClass.HasValue)
+                query = query.Where(a => a.DietaryClass == dietaryClass.Value);
+
+            if (activityPattern.HasValue)
+                query = query.Where(a => a.ActivityPattern == activityPattern.Value);
+
+            if (securityRequirement.HasValue)
+                query = query.Where(a => a.SecurityRequirement == securityRequirement.Value);
+
+            // dropdown data
+            ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name", categoryId);
+            ViewData["SelectedSize"] = size;
+            ViewData["SelectedDietaryClass"] = dietaryClass;
+            ViewData["SelectedActivityPattern"] = activityPattern;
+            ViewData["SelectedSecurityRequirement"] = securityRequirement;
+
+            return View(await query.ToListAsync());
         }
+
 
         // GET: Animals/Details/5
         public async Task<IActionResult> Details(int? id)

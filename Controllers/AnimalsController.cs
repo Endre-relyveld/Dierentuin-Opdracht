@@ -84,8 +84,37 @@ namespace DierenTuin_opdracht.Controllers
             });
         }
 
-        
-        
+
+        private static string ToFirstUpper(string? input)
+        {
+            var s = (input ?? "").Trim().ToLowerInvariant();
+            if (s.Length == 0) return "";
+            return char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        private List<Animal> GetUniquePreyOptionsBySpecies(int? excludeAnimalId = null)
+        {
+            return _context.Animals
+                .AsNoTracking()
+                .Where(a => excludeAnimalId == null || a.Id != excludeAnimalId)
+                .ToList()
+                .Where(a => !string.IsNullOrWhiteSpace(a.Species)) // geen lege soort
+                .GroupBy(a => a.Species!.Trim().ToLowerInvariant()) // ✅ dedupe op soort
+                .Select(g =>
+                {
+                    var first = g.First(); // kiest 1 record als “representant” van die soort
+                    return new Animal
+                    {
+                        Id = first.Id,
+                        // we zetten Name op de nette soort-tekst zodat je view (@p.Name) het goed toont
+                        Name = ToFirstUpper(first.Species),
+                        Species = first.Species
+                    };
+                })
+                .OrderBy(a => a.Name)
+                .ToList();
+        }
+
 
 
         // Sunrise: geeft aan of het dier wakker wordt of gaat slapen
@@ -126,12 +155,16 @@ namespace DierenTuin_opdracht.Controllers
 
 
         // GET: Animals
-        // GET: Animals
         public async Task<IActionResult> Index(
+            string? name,
+            string? species,
             int? categoryId,
             Size? size,
             DietaryClass? dietaryClass,
             ActivityPattern? activityPattern,
+            string? enclosure,
+            double? minSpace,
+            string? preySpecies,
             SecurityLevel? securityRequirement
         )
         {
@@ -140,30 +173,81 @@ namespace DierenTuin_opdracht.Controllers
                 .Include(a => a.Enclosure)
                 .AsQueryable();
 
+            // Naam
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                var n = name.Trim().ToLower();
+                query = query.Where(a => a.Name != null && a.Name.ToLower().Contains(n));
+            }
+
+            // Soort
+            if (!string.IsNullOrWhiteSpace(species))
+            {
+                var s = species.Trim().ToLower();
+                query = query.Where(a => a.Species != null && a.Species.ToLower().Contains(s));
+            }
+
+            // Categorie
             if (categoryId.HasValue)
                 query = query.Where(a => a.CategoryId == categoryId.Value);
 
+            // Grootte
             if (size.HasValue)
                 query = query.Where(a => a.Size == size.Value);
 
+            // Voedingsklasse
             if (dietaryClass.HasValue)
                 query = query.Where(a => a.DietaryClass == dietaryClass.Value);
 
+            // Activiteitspatroon
             if (activityPattern.HasValue)
                 query = query.Where(a => a.ActivityPattern == activityPattern.Value);
 
+            // Verblijf (op naam)
+            if (!string.IsNullOrWhiteSpace(enclosure))
+            {
+                var e = enclosure.Trim().ToLower();
+                query = query.Where(a => a.Enclosure != null && a.Enclosure.Name.ToLower().Contains(e));
+            }
+
+            // Ruimtebehoefte (min)
+            if (minSpace.HasValue)
+                query = query.Where(a => a.SpaceRequirement >= minSpace.Value);
+
+            // Beveiligingsniveau
             if (securityRequirement.HasValue)
                 query = query.Where(a => a.SecurityRequirement == securityRequirement.Value);
 
-            // dropdown data
+            // Eerst server-side resultaat ophalen (met prey erbij voor view + prey-filter)
+            var animals = await query
+                .Include(a => a.Prey)
+                .ToListAsync();
+
+            // Prooi filter (client-side, omdat EF dit bij jou niet kan vertalen)
+            if (!string.IsNullOrWhiteSpace(preySpecies))
+            {
+                var p = preySpecies.Trim();
+
+                animals = animals
+                    .Where(a => a.Prey != null && a.Prey.Any(pr =>
+                        !string.IsNullOrWhiteSpace(pr.Species) &&
+                        pr.Species.Contains(p, StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+            }
+
+            // Dropdown data (nodig voor view)
             ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name", categoryId);
+
+            // (optioneel) als je dit in je view gebruikt:
             ViewData["SelectedSize"] = size;
             ViewData["SelectedDietaryClass"] = dietaryClass;
             ViewData["SelectedActivityPattern"] = activityPattern;
             ViewData["SelectedSecurityRequirement"] = securityRequirement;
 
-            return View(await query.ToListAsync());
+            return View(animals);
         }
+
+
 
 
         // GET: Animals/Details/5
@@ -177,6 +261,7 @@ namespace DierenTuin_opdracht.Controllers
             var animal = await _context.Animals
                 .Include(a => a.Category)
                 .Include(a => a.Enclosure)
+                .Include(a => a.Prey)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (animal == null)
             {
@@ -187,31 +272,51 @@ namespace DierenTuin_opdracht.Controllers
         }
 
         // GET: Animals/Create
-        // GET: Animals/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");  // Toon Name i.p.v. Id
-            ViewData["EnclosureId"] = new SelectList(_context.Enclosures, "Id", "Name"); // Toon Name i.p.v. Id
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["EnclosureId"] = new SelectList(_context.Enclosures, "Id", "Name");
+
+            ViewData["PreyOptions"] = GetUniquePreyOptionsBySpecies();
+
+
             return View();
         }
 
-        
+
+
 
         // POST: Animals/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Species,CategoryId,Size,DietaryClass,ActivityPattern,EnclosureId,SpaceRequirement,SecurityRequirement")] Animal animal)
+        public async Task<IActionResult> Create(
+            [Bind("Name,Species,CategoryId,Size,DietaryClass,ActivityPattern,EnclosureId,SpaceRequirement,SecurityRequirement")] Animal animal,
+            List<int> SelectedPreyIds
+        )
+
+
         {
             if (ModelState.IsValid)
             {
+                if (SelectedPreyIds != null && SelectedPreyIds.Any())
+                {
+                    animal.Prey = await _context.Animals
+                        .Where(a => SelectedPreyIds.Contains(a.Id))
+                        .ToListAsync();
+                }
+
                 _context.Add(animal);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", animal.CategoryId);
             ViewData["EnclosureId"] = new SelectList(_context.Enclosures, "Id", "Id", animal.EnclosureId);
+
+            ViewData["PreyOptions"] = GetUniquePreyOptionsBySpecies();
+
+
             return View(animal);
         }
 
@@ -224,7 +329,10 @@ namespace DierenTuin_opdracht.Controllers
                 return NotFound();
             }
 
-            var animal = await _context.Animals.FindAsync(id);
+            var animal = await _context.Animals
+            .Include(a => a.Prey)
+            .FirstOrDefaultAsync(a => a.Id == id);
+
             if (animal == null)
             {
                 return NotFound();
@@ -234,7 +342,17 @@ namespace DierenTuin_opdracht.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", animal.CategoryId);
             ViewData["EnclosureId"] = new SelectList(_context.Enclosures, "Id", "Name", animal.EnclosureId);
 
+            ViewData["PreyOptions"] = GetUniquePreyOptionsBySpecies(animal.Id);
+
+
+
+
+            ViewData["SelectedPreyIds"] = animal.Prey?
+                .Select(p => p.Id)
+                .ToList() ?? new List<int>();
+
             return View(animal);
+
         }
 
         // POST: Animals/Edit/5
@@ -242,7 +360,12 @@ namespace DierenTuin_opdracht.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Species,CategoryId,Size,DietaryClass,ActivityPattern,EnclosureId,SpaceRequirement,SecurityRequirement")] Animal animal)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("Id,Name,Species,CategoryId,Size,DietaryClass,ActivityPattern,EnclosureId,SpaceRequirement,SecurityRequirement")] Animal animal,
+            List<int> SelectedPreyIds
+        )
+
         {
             if (id != animal.Id)
             {
@@ -253,8 +376,37 @@ namespace DierenTuin_opdracht.Controllers
             {
                 try
                 {
-                    _context.Update(animal);
+                    var animalDb = await _context.Animals
+                        .Include(a => a.Prey)
+                        .FirstOrDefaultAsync(a => a.Id == id);
+
+                    if (animalDb == null) return NotFound();
+
+                    animalDb.Name = animal.Name;
+                    animalDb.Species = animal.Species;
+                    animalDb.CategoryId = animal.CategoryId;
+                    animalDb.Size = animal.Size;
+                    animalDb.DietaryClass = animal.DietaryClass;
+                    animalDb.ActivityPattern = animal.ActivityPattern;
+                    animalDb.EnclosureId = animal.EnclosureId;
+                    animalDb.SpaceRequirement = animal.SpaceRequirement;
+                    animalDb.SecurityRequirement = animal.SecurityRequirement;
+
+                    animalDb.Prey ??= new List<Animal>();
+                    animalDb.Prey.Clear();
+
+                    if (SelectedPreyIds != null && SelectedPreyIds.Any())
+                    {
+                        var prey = await _context.Animals
+                            .Where(a => SelectedPreyIds.Contains(a.Id) && a.Id != id)
+                            .ToListAsync();
+
+                        foreach (var p in prey)
+                            animalDb.Prey.Add(p);
+                    }
+
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -271,6 +423,12 @@ namespace DierenTuin_opdracht.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", animal.CategoryId);
             ViewData["EnclosureId"] = new SelectList(_context.Enclosures, "Id", "Id", animal.EnclosureId);
+
+            ViewData["PreyOptions"] = GetUniquePreyOptionsBySpecies(id);
+
+
+
+
             return View(animal);
         }
 

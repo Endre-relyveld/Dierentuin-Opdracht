@@ -5,72 +5,95 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
 @using DierenTuin_opdracht.Models
 
-<form asp-action="Index" method="get" class="mb-3">
-    <div class="row g-2">
+<form asp-action="Index" method="get" class="filter-form">
 
-        <div class="col-md-3">
-            <label class="form-label">Categorie</label>
-            <select name="categoryId" class="form-select" asp-items="@((SelectList)ViewData["Categories"])">
-                <option value="">Alle</option>
-            </select>
+    <!-- Naam -->
+    <input type="text" name="name" placeholder="Naam"
+           value="@Context.Request.Query["name"]" />
 
-        </div>
+    <!-- Soort -->
+    <input type="text" name="species" placeholder="Soort"
+           value="@Context.Request.Query["species"]" />
 
-        <div class="col-md-2">
-            <label class="form-label">Grootte</label>
-            <select name="size" class="form-select">
-                <option value="">Alle</option>
-                @foreach (var v in Enum.GetValues(typeof(Size)).Cast<Size>())
-                {
-                    var selected = (ViewData["SelectedSize"] as Size?) == v ? "selected" : null;
-                    <option value="@v" selected="@selected">@v</option>
-                }
-            </select>
-        </div>
+    <!-- Categorie -->
+    <select name="categoryId">
+        <option value="">Categorie</option>
+        @foreach (var c in (SelectList)ViewData["Categories"])
+        {
+            <option value="@c.Value" selected="@(c.Selected)">
+                @c.Text
+            </option>
+        }
+    </select>
 
-        <div class="col-md-2">
-            <label class="form-label">Voedingsklasse</label>
-            <select name="dietaryClass" class="form-select">
-                <option value="">Alle</option>
-                @foreach (var v in Enum.GetValues(typeof(DietaryClass)).Cast<DietaryClass>())
-                {
-                    var selected = (ViewData["SelectedDietaryClass"] as DietaryClass?) == v ? "selected" : null;
-                    <option value="@v" selected="@selected">@v</option>
-                }
-            </select>
-        </div>
+    <!-- Grootte -->
+    <select name="size">
+        <option value="">Grootte</option>
+        @foreach (var v in Enum.GetValues(typeof(Size)))
+        {
+            <option value="@v"
+                    selected="@(Context.Request.Query["size"] == v.ToString())">
+                @v
+            </option>
+        }
+    </select>
 
-        <div class="col-md-2">
-            <label class="form-label">Activiteitspatroon</label>
-            <select name="activityPattern" class="form-select">
-                <option value="">Alle</option>
-                @foreach (var v in Enum.GetValues(typeof(ActivityPattern)).Cast<ActivityPattern>())
-                {
-                    var selected = (ViewData["SelectedActivityPattern"] as ActivityPattern?) == v ? "selected" : null;
-                    <option value="@v" selected="@selected">@v</option>
-                }
-            </select>
-        </div>
+    <!-- Voedingsklasse -->
+    <select name="dietaryClass">
+        <option value="">Voedingsklasse</option>
+        @foreach (var v in Enum.GetValues(typeof(DietaryClass)))
+        {
+            <option value="@v"
+                    selected="@(Context.Request.Query["dietaryClass"] == v.ToString())">
+                @v
+            </option>
+        }
+    </select>
 
-        <div class="col-md-3">
-            <label class="form-label">Beveiligingsniveau</label>
-            <select name="securityRequirement" class="form-select">
-                <option value="">Alle</option>
-                @foreach (var v in Enum.GetValues(typeof(SecurityLevel)).Cast<SecurityLevel>())
-                {
-                    var selected = (ViewData["SelectedSecurityRequirement"] as SecurityLevel?) == v ? "selected" : null;
-                    <option value="@v" selected="@selected">@v</option>
-                }
-            </select>
-        </div>
+    <!-- Activiteitspatroon -->
+    <select name="activityPattern">
+        <option value="">Activiteitspatroon</option>
+        @foreach (var v in Enum.GetValues(typeof(ActivityPattern)))
+        {
+            <option value="@v"
+                    selected="@(Context.Request.Query["activityPattern"] == v.ToString())">
+                @v
+            </option>
+        }
+    </select>
 
-        <div class="col-12 mt-2 d-flex gap-2">
-            <button type="submit" class="btn btn-primary">Filter</button>
-            <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
-        </div>
+    <!-- Verblijf -->
+    <input type="text" name="enclosure"
+           placeholder="Verblijf"
+           value="@Context.Request.Query["enclosure"]" />
 
-    </div>
+    <!-- Ruimtebehoefte -->
+    <input type="number" step="0.1" name="minSpace"
+           placeholder="Min m²"
+           value="@Context.Request.Query["minSpace"]" />
+
+    <!-- Prooi (op soort) -->
+    <input type="text" name="preySpecies"
+           placeholder="Prooi (soort)"
+           value="@Context.Request.Query["preySpecies"]" />
+
+    <!-- Beveiligingsniveau -->
+    <select name="securityRequirement">
+        <option value="">Beveiligingsniveau</option>
+        @foreach (var v in Enum.GetValues(typeof(SecurityLevel)))
+        {
+            <option value="@v"
+                    selected="@(Context.Request.Query["securityRequirement"] == v.ToString())">
+                @v
+            </option>
+        }
+    </select>
+
+    <button type="submit">Filter</button>
+    <a asp-action="Index">Reset</a>
+
 </form>
+
 
 
 <table class="table">
@@ -108,3 +131,97 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Nieuw dier toevoegen</a>
 </p>
+
+
+
+<style>
+
+    /* ==============================
+   Animals Index – Filter Panel
+   ============================== */
+
+.filter-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+
+    padding: 16px;
+    margin-bottom: 20px;
+
+    background: #1f2933;              /* donker dashboard */
+    border-radius: 10px;
+    border: 1px solid #2f3b47;
+}
+
+/* Inputs & selects */
+.filter-form input,
+.filter-form select {
+    width: 100%;
+    padding: 8px 10px;
+
+    background: #111827;
+    color: #e5e7eb;
+
+    border: 1px solid #374151;
+    border-radius: 6px;
+
+    font-size: 0.9rem;
+}
+
+/* Placeholder */
+.filter-form input::placeholder {
+    color: #9ca3af;
+}
+
+/* Focus state */
+.filter-form input:focus,
+.filter-form select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #020617;
+}
+
+/* Buttons row */
+.filter-form button,
+.filter-form a {
+    padding: 9px 12px;
+    text-align: center;
+
+    font-weight: 500;
+    font-size: 0.9rem;
+
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Filter button */
+.filter-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.filter-form button:hover {
+    background: #1d4ed8;
+}
+
+/* Reset button */
+.filter-form a {
+    background: #374151;
+    color: #e5e7eb;
+    text-decoration: none;
+}
+
+.filter-form a:hover {
+    background: #4b5563;
+}
+
+/* Make buttons align nicely */
+.filter-form button,
+.filter-form a {
+    align-self: end;
+}
+
+
+
+</style>

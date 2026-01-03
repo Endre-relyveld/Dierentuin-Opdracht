@@ -10,6 +10,12 @@
     <h4>Dier</h4>
     <hr />
     <dl class="row">
+        
+
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">
+            @Model.Id
+        </dd>
 
         <dt class="col-sm-2">Naam</dt>
         <dd class="col-sm-10">
@@ -50,6 +56,24 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SpaceRequirement)
         </dd>
+
+        <dt class="col-sm-2">Prooi</dt>
+        <dd class="col-sm-10">
+            @if (Model.Prey != null && Model.Prey.Any())
+            {
+                <ul>
+                    @foreach (var prey in Model.Prey)
+                    {
+                        <li>@prey.Species</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <span>Geen prooien gekozen</span>
+            }
+        </dd>
+
 
         <dt class="col-sm-2">Beveiligingsniveau</dt>
         <dd class="col-sm-10">

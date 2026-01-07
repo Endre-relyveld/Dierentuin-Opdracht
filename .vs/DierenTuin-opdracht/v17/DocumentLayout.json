@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|w:\\school\\vakken\\jaar-2\\c-sharp\\dierentuin-opdracht\\dierentuin-opdracht\\dierentuin-opdracht\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|solutionrelative:dierentuin-opdracht\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|w:\\school\\vakken\\jaar-2\\c-sharp\\dierentuin-opdracht\\dierentuin-opdracht\\dierentuin-opdracht\\controllers\\animalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|solutionrelative:dierentuin-opdracht\\controllers\\animalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -69,10 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|w:\\school\\vakken\\jaar-2\\c-sharp\\dierentuin-opdracht\\dierentuin-opdracht\\dierentuin-opdracht\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|solutionrelative:dierentuin-opdracht\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|w:\\school\\vakken\\jaar-2\\c-sharp\\dierentuin-opdracht\\dierentuin-opdracht\\dierentuin-opdracht\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|solutionrelative:dierentuin-opdracht\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{20385C11-0518-4D6C-BFE2-A335A84076FB}|DierenTuin-opdracht\\DierenTuin-opdracht.csproj|w:\\school\\vakken\\jaar-2\\c-sharp\\dierentuin-opdracht\\dierentuin-opdracht\\dierentuin-opdracht\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -166,23 +166,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Program.cs",
-              "RelativeDocumentMoniker": "DierenTuin-opdracht\\Program.cs",
-              "ToolTip": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Program.cs",
-              "RelativeToolTip": "DierenTuin-opdracht\\Program.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAAAEgAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T08:08:47.629Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AnimalsController.cs",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Controllers\\AnimalsController.cs",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Controllers\\AnimalsController.cs",
@@ -195,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Create.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Animals\\Create.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Animals\\Create.cshtml",
@@ -207,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Animals\\Edit.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Animals\\Edit.cshtml",
@@ -219,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Details.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Animals\\Details.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Animals\\Details.cshtml",
@@ -231,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Animals\\Index.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Animals\\Index.cshtml",
@@ -243,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Controllers\\CategoriesController.cs",
@@ -255,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "site.css",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\wwwroot\\css\\site.css",
@@ -267,7 +255,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
+              "ToolTip": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-21T10:44:42.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Program.cs",
+              "RelativeDocumentMoniker": "DierenTuin-opdracht\\Program.cs",
+              "ToolTip": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Program.cs",
+              "RelativeToolTip": "DierenTuin-opdracht\\Program.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAEgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T08:08:47.629Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Index.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Enclosures\\Index.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Enclosures\\Index.cshtml",
@@ -279,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Sunrise.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Animals\\Sunrise.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Animals\\Sunrise.cshtml",
@@ -291,7 +304,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Sunset.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Animals\\Sunset.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Animals\\Sunset.cshtml",
@@ -303,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Index.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Zoos\\Index.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Zoos\\Index.cshtml",
@@ -315,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\_ViewImports.cshtml",
@@ -327,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Index.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Categories\\Index.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Categories\\Index.cshtml",
@@ -339,7 +352,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Animals\\Delete.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Animals\\Delete.cshtml",
@@ -351,7 +364,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Shared\\_Layout.cshtml",
@@ -363,7 +376,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "bootstrap.css",
               "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
               "RelativeDocumentMoniker": "DierenTuin-opdracht\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
@@ -372,18 +385,6 @@
               "ViewState": "AgIAAAUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-12-22T14:11:44.878Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
-              "ToolTip": "W:\\school\\vakken\\jaar-2\\C-Sharp\\DierenTuin-opdracht\\DierenTuin-opdracht\\DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "DierenTuin-opdracht\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAHwAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-21T10:44:42.699Z"
             },
             {
               "$type": "Document",

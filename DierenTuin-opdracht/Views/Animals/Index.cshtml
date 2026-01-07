@@ -222,6 +222,20 @@
     align-self: end;
 }
 
+/* echte placeholders (input) */
+.filter-form input::placeholder {
+    color: #999;
+}
+
+/* select "placeholders" (eerste option) */
+.filter-form select {
+    color: #999;
+}
+
+/* zodra een echte waarde is gekozen */
+.filter-form select:has(option:checked:not([value=""])) {
+    color: #000;
+}
 
 
 </style>

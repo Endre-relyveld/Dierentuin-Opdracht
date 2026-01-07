@@ -21,6 +21,7 @@ namespace DierenTuin_opdracht.Models
         public Enclosure? Enclosure { get; set; }
 
         public double SpaceRequirement { get; set; }
+
         public SecurityLevel SecurityRequirement { get; set; }
 
         public List<Animal>? Prey { get; set; } = new();

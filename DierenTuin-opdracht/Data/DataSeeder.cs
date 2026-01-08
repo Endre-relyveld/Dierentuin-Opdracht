@@ -49,7 +49,7 @@ namespace DierenTuin_opdracht.Data
                     .RuleFor(a => a.Size, f => f.PickRandom<Size>())
                     .RuleFor(a => a.DietaryClass, f => f.PickRandom<DietaryClass>())
                     .RuleFor(a => a.ActivityPattern, f => f.PickRandom<ActivityPattern>())
-                    .RuleFor(a => a.SpaceRequirement, f => f.Random.Double(5, 50))
+                    .RuleFor(a => a.SpaceRequirement, f => Math.Round(f.Random.Double(5, 50), 2))
                     .RuleFor(a => a.SecurityRequirement, f => f.PickRandom<SecurityLevel>())
                     .RuleFor(a => a.CategoryId, f => f.Random.Int(1, 5))
                     .RuleFor(a => a.EnclosureId, f => f.Random.Int(1, 7));

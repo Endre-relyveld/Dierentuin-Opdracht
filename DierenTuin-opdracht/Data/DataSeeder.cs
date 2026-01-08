@@ -38,13 +38,14 @@ namespace DierenTuin_opdracht.Data
             {
                 var enclosures = new[]
                 {
-                    new Enclosure { Name = "Savanne", Size = 500, Climate = Climate.Tropical, ZooId = zoo.Id },
-                    new Enclosure { Name = "Aquarium", Size = 200, Climate = Climate.Tropical, ZooId = zoo.Id },
-                    new Enclosure { Name = "IJsberenverblijf", Size = 300, Climate = Climate.Arctic, ZooId = zoo.Id },
-                    new Enclosure { Name = "Vogelvolière", Size = 150, Climate = Climate.Temperate, ZooId = zoo.Id },
-                    new Enclosure { Name = "Reptielenhuis", Size = 100, Climate = Climate.Tropical, ZooId = zoo.Id },
-                    new Enclosure { Name = "Apenrots", Size = 400, Climate = Climate.Tropical, ZooId = zoo.Id },
-                    new Enclosure { Name = "Woestijn", Size = 250, Climate = Climate.Temperate, ZooId = zoo.Id }
+                    new Enclosure { Name = "Savanne", Size = 500, Climate = Climate.Tropical, HabitatType = HabitatType.Grassland, ZooId = zoo.Id },
+                    new Enclosure { Name = "Aquarium", Size = 200, Climate = Climate.Tropical, HabitatType = HabitatType.Aquatic, ZooId = zoo.Id },
+                    new Enclosure { Name = "IJsberenverblijf", Size = 300, Climate = Climate.Arctic, HabitatType = HabitatType.Forest, ZooId = zoo.Id },
+                    new Enclosure { Name = "Vogelvolière", Size = 150, Climate = Climate.Temperate, HabitatType = HabitatType.Forest, ZooId = zoo.Id },
+                    new Enclosure { Name = "Reptielenhuis", Size = 100, Climate = Climate.Tropical, HabitatType = HabitatType.Desert, ZooId = zoo.Id },
+                    new Enclosure { Name = "Apenrots", Size = 400, Climate = Climate.Tropical, HabitatType = HabitatType.Forest, ZooId = zoo.Id },
+                    new Enclosure { Name = "Woestijn", Size = 250, Climate = Climate.Temperate, HabitatType = HabitatType.Desert, ZooId = zoo.Id }
+
                 };
                 context.Enclosures.AddRange(enclosures);
                 context.SaveChanges();

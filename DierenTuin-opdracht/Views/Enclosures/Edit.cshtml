@@ -1,4 +1,21 @@
 ﻿@model DierenTuin_opdracht.Models.Enclosure
+@using DierenTuin_opdracht.Models
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using System
+@using System.Linq
+
+@{
+    var habitatItems = Enum.GetValues(typeof(HabitatType))
+        .Cast<HabitatType>()
+        .Where(h => h != HabitatType.None)
+        .Select(h => new SelectListItem
+                {
+                    Text = h.ToString(),
+                    Value = ((int)h).ToString()
+                })
+        .ToList();
+}
+
 
 @{
     ViewData["Title"] = "Verblijf bewerken";
@@ -32,7 +49,9 @@
 
             <div class="form-group">
                 <label asp-for="HabitatType" class="control-label">Type leefgebied</label>
-                <input asp-for="HabitatType" class="form-control" />
+
+                <select asp-for="HabitatType" class="form-control" asp-items="habitatItems"></select>
+
                 <span asp-validation-for="HabitatType" class="text-danger"></span>
             </div>
 

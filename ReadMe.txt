@@ -4,7 +4,7 @@ Update-Database 0
 Update-Database
 
 Deze twee regels resetten de database en maken hem opnieuw aan via Entity Framework migrations.
-Wanneer je daarna het project start, seedt het project automatisch nieuwe data in de database.
+Wanneer je daarna het project start, seedt het project automatisch nieuwe data in de database. (dit is niet nodig voor het runnen van de code maar hiermee kun je de werking van de seeder testen)
 
 Waar plak je dit in Visual Studio?
 

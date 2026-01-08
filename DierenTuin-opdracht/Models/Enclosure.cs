@@ -14,6 +14,8 @@ namespace DierenTuin_opdracht.Models
 
         public string DietaryRestrictions { get; set; } = string.Empty;
 
+        public int? ZooId { get; set; }
+        public Zoo? Zoo { get; set; }
 
 
 

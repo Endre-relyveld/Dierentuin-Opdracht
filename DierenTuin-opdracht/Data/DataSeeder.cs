@@ -8,6 +8,16 @@ namespace DierenTuin_opdracht.Data
     {
         public static void Initialize(ZooContext context)
         {
+
+            // 1. ZOO SEED (HIER TOEVOEGEN)
+            var zoo = context.Zoos.FirstOrDefault();
+            if (zoo == null)
+            {
+                zoo = new Zoo { Name = "Mijn Dierentuin" };
+                context.Zoos.Add(zoo);
+                context.SaveChanges();
+            }
+
             // Voeg 5 categorieën toe
             if (!context.Categories.Any())
             {
@@ -28,13 +38,13 @@ namespace DierenTuin_opdracht.Data
             {
                 var enclosures = new[]
                 {
-                    new Enclosure { Name = "Savanne", Size = 500, Climate = Climate.Tropical },
-                    new Enclosure { Name = "Aquarium", Size = 200, Climate = Climate.Tropical },
-                    new Enclosure { Name = "IJsberenverblijf", Size = 300, Climate = Climate.Arctic },
-                    new Enclosure { Name = "Vogelvolière", Size = 150, Climate = Climate.Temperate },
-                    new Enclosure { Name = "Reptielenhuis", Size = 100, Climate = Climate.Tropical },
-                    new Enclosure { Name = "Apenrots", Size = 400, Climate = Climate.Tropical },
-                    new Enclosure { Name = "Woestijn", Size = 250, Climate = Climate.Temperate }
+                    new Enclosure { Name = "Savanne", Size = 500, Climate = Climate.Tropical, ZooId = zoo.Id },
+                    new Enclosure { Name = "Aquarium", Size = 200, Climate = Climate.Tropical, ZooId = zoo.Id },
+                    new Enclosure { Name = "IJsberenverblijf", Size = 300, Climate = Climate.Arctic, ZooId = zoo.Id },
+                    new Enclosure { Name = "Vogelvolière", Size = 150, Climate = Climate.Temperate, ZooId = zoo.Id },
+                    new Enclosure { Name = "Reptielenhuis", Size = 100, Climate = Climate.Tropical, ZooId = zoo.Id },
+                    new Enclosure { Name = "Apenrots", Size = 400, Climate = Climate.Tropical, ZooId = zoo.Id },
+                    new Enclosure { Name = "Woestijn", Size = 250, Climate = Climate.Temperate, ZooId = zoo.Id }
                 };
                 context.Enclosures.AddRange(enclosures);
                 context.SaveChanges();

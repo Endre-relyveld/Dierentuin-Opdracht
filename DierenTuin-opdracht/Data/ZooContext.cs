@@ -16,6 +16,13 @@ namespace DierenTuin_opdracht.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Zoo>()
+                .HasMany(z => z.Enclosures)
+                .WithOne(e => e.Zoo)
+                .HasForeignKey(e => e.ZooId);
+
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Animal>()
